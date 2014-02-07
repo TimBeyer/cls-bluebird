@@ -1,0 +1,37 @@
+{
+  "name": "cls-bluebird",
+  "version": "1.0.0",
+  "description": "Make bluebird work with the continuation-local-storage module.",
+  "main": "shim.js",
+  "scripts": {
+    "test": "tap test/*.tap.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/TimBeyer/cls-bluebird.git"
+  },
+  "keywords": [
+    "continuation-local-storage",
+    "bluebird",
+    "promises",
+    "async",
+    "glue",
+    "baling-wire"
+  ],
+  "author": "Tim Beyer <tim.beyer@gmail.com>",
+  "license": "BSD-2-Clause",
+  "bugs": {
+    "url": "https://github.com/TimBeyer/cls-bluebird/issues"
+  },
+  "dependencies": {
+    "shimmer": "~1"
+  },
+  "devDependencies": {
+    "tap": "~0.4.4",
+    "redis": "~0.9.0"
+  },
+  "peerDependencies": {
+    "continuation-local-storage": "~3",
+    "bluebird": ">=1.0.3"
+  }
+}
