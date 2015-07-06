@@ -10,12 +10,12 @@ module.exports = function patchBluebird(ns) {
     var Promise = require('bluebird');
     var proto = Promise && Promise.prototype;
     shimmer.wrap(proto, '_addCallbacks', function(_addCallbacks) {
-        return function ns_addCallbacks(fulfill, reject, progress, promise, receiver) {
+        return function ns_addCallbacks(fulfill, reject, progress, promise, receiver, domain) {
             if (typeof fulfill === 'function') fulfill = ns.bind(fulfill);
             if (typeof reject === 'function') reject = ns.bind(reject);
             if (typeof progress === 'function') progress = ns.bind(progress);
 
-            return _addCallbacks.call(this, fulfill, reject, progress, promise, receiver);
+            return _addCallbacks.call(this, fulfill, reject, progress, promise, receiver, domain);
         };
     });
 };
