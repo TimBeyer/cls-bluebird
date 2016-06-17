@@ -4,3 +4,16 @@
 
 For documentation, check the above link.
 It works in the same way and uses the same tests.
+
+Only difference is the call signature. You can provide a specific Bluebird constructor to be shimmed, rather than the default.
+
+API: `clsBluebird( ns [, Promise] )`
+
+```js
+var cls = require('continuation-local-storage');
+var ns = cls.createNamespace('NODESPACE');
+
+var Promise = require('bluebird');
+var clsBluebird = require('clsBluebird');
+clsBluebird(ns, Promise);
+```

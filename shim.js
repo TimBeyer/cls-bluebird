@@ -2,13 +2,24 @@
 
 var shimmer = require('shimmer');
 
-module.exports = function patchBluebird(ns) {
+var Bluebird;
+try {
+    Bluebird = require('bluebird');
+} catch (err) {}
+
+module.exports = function patchBluebird(ns, Promise) {
     if (typeof ns.bind !== 'function') {
-        throw new TypeError("must include namespace to patch bluebird against");
+        throw new TypeError('must include namespace to patch bluebird against');
     }
 
-    var Promise = require('bluebird');
-    var proto = Promise && Promise.prototype;
+    if (!Promise) {
+        Promise = Bluebird;
+        if (!Promise) throw new Error('could not require bluebird');
+    } else if (!isBluebirdConstructor(Promise)) {
+        throw new TypeError('promise implementation provided must be bluebird');
+    }
+
+    var proto = Promise.prototype;
     shimmer.wrap(proto, '_addCallbacks', function(_addCallbacks) {
         return function ns_addCallbacks(fulfill, reject, progress, promise, receiver, domain) {
             if (typeof fulfill === 'function') fulfill = ns.bind(fulfill);
@@ -19,3 +30,11 @@ module.exports = function patchBluebird(ns) {
         };
     });
 };
+
+function isBluebirdConstructor(Promise) {
+    return isBluebirdPromise(new Promise(function() {}));
+}
+
+function isBluebirdPromise(promise) {
+    return Object.prototype.hasOwnProperty.call(promise, '_promise0');
+}
