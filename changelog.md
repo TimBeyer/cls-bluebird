@@ -1,5 +1,9 @@
 # Changelog
 
+## Next
+
+* Remove peer dependencies
+
 ## 1.0.1
 
 * Fix: `domain` argument for `_addCallbacks`
