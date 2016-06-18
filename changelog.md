@@ -1,5 +1,9 @@
 # Changelog
 
+## Next
+
+* Use `is-bluebird` module for checking `Promise` argument
+
 ## 1.1.0
 
 * Remove peer dependencies

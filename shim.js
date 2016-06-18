@@ -1,6 +1,7 @@
 'use strict';
 
-var shimmer = require('shimmer');
+var shimmer = require('shimmer'),
+    isBluebird = require('is-bluebird');
 
 var Bluebird;
 try {
@@ -15,7 +16,7 @@ module.exports = function patchBluebird(ns, Promise) {
     if (!Promise) {
         Promise = Bluebird;
         if (!Promise) throw new Error('could not require bluebird');
-    } else if (!isBluebirdConstructor(Promise)) {
+    } else if (!isBluebird.ctor(Promise)) {
         throw new TypeError('promise implementation provided must be bluebird');
     }
 
@@ -30,11 +31,3 @@ module.exports = function patchBluebird(ns, Promise) {
         };
     });
 };
-
-function isBluebirdConstructor(Promise) {
-    return isBluebirdPromise(new Promise(function() {}));
-}
-
-function isBluebirdPromise(promise) {
-    return Object.prototype.hasOwnProperty.call(promise, '_promise0');
-}
