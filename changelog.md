@@ -1,6 +1,6 @@
 # Changelog
 
-## Next
+## 1.1.1
 
 * Use `is-bluebird` module for checking `Promise` argument
 
