@@ -24,7 +24,7 @@
     "url": "https://github.com/TimBeyer/cls-bluebird/issues"
   },
   "dependencies": {
-    "shimmer": "~1"
+    "shimmer": "^1.1.0"
   },
   "devDependencies": {
     "tap": "~0.4.4",

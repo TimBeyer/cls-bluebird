@@ -3,6 +3,7 @@
 ## Next
 
 * Remove peer dependencies
+* Update `shimmer` dependency
 
 ## 1.0.1
 
