@@ -1,5 +1,9 @@
 # Changelog
 
+## Next
+
+* Add npm keywords
+
 ## 1.1.2
 
 * README

@@ -12,11 +12,18 @@
   },
   "keywords": [
     "continuation-local-storage",
+    "cls",
     "bluebird",
+    "continuation",
+    "local",
+    "storage",
+    "promise",
     "promises",
     "async",
+    "thread",
     "glue",
-    "baling-wire"
+    "baling-wire",
+    "patch"
   ],
   "author": "Tim Beyer <tim.beyer@gmail.com>",
   "license": "BSD-2-Clause",
