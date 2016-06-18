@@ -1,6 +1,6 @@
 # Changelog
 
-## Next
+## 1.1.0
 
 * Remove peer dependencies
 * Update `shimmer` dependency
