@@ -4,7 +4,9 @@
   "description": "Make bluebird work with the continuation-local-storage module.",
   "main": "shim.js",
   "scripts": {
-    "test": "tap test/*.tap.js"
+    "test": "npm run jshint && npm run test-main",
+    "test-main": "tap test/*.tap.js",
+    "jshint": "jshint shim.js test"
   },
   "repository": {
     "type": "git",
@@ -38,6 +40,7 @@
     "tap": "~0.4.4",
     "redis": "~0.9.0",
     "continuation-local-storage": "^3.1.7",
-    "bluebird": "^2.10.2"
+    "bluebird": "^2.10.2",
+    "jshint": "^2.9.2"
   }
 }

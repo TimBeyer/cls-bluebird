@@ -1,5 +1,7 @@
 'use strict';
 
+// jshint quotmark:false
+
 var test = require('tap').test;
 
 test("promises + CLS without shim = failure", function (t) {
