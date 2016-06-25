@@ -1,6 +1,6 @@
 # Changelog
 
-## Next
+## 1.1.3
 
 * Improved validation that `ns` argument is a namespace
 * Add npm keywords
