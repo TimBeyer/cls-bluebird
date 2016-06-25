@@ -9,9 +9,7 @@ try {
 } catch (err) {}
 
 module.exports = function patchBluebird(ns, Promise) {
-    if (typeof ns.bind !== 'function') {
-        throw new TypeError('must include namespace to patch bluebird against');
-    }
+    if (!ns || typeof ns.bind !== 'function' || typeof ns.run !== 'function') throw new TypeError('must include namespace to patch bluebird against');
 
     if (!Promise) {
         Promise = Bluebird;

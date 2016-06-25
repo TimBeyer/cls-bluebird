@@ -2,6 +2,7 @@
 
 ## Next
 
+* Improved validation that `ns` argument is a namespace
 * Add npm keywords
 
 ## 1.1.2
