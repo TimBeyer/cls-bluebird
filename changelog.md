@@ -1,5 +1,9 @@
 # Changelog
 
+## Next
+
+* Complete re-write
+
 ## 1.1.3
 
 * Improved validation that `ns` argument is a namespace

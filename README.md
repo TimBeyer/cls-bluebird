@@ -10,7 +10,11 @@ Patch [bluebird](https://www.npmjs.com/package/bluebird) for [continuation-local
 
 ## Current Status
 
-Currently works with bluebird v2.x only. But bluebird v3.x support coming soon!
+Version 2.x of cls-bluebird is a complete re-write aiming to make it 100% reliable and robust. Features comprehensive test coverage (over 100,000 tests) which cover pretty much all conceivable cases.
+
+Compatible with [bluebird](https://www.npmjs.com/package/bluebird) v2.x and v3.x. Tests cover both versions.
+
+Please use with latest version of [bluebird](https://www.npmjs.com/package/bluebird) in either v2.x or v3.x branches. Older versions are not guaranteed to work.
 
 ## Usage
 
@@ -31,20 +35,22 @@ The above patches the "global" instance of bluebird. So anywhere else in the sam
 
 ### Patching a particular instance of Bluebird
 
-To patch a particular instance of bluebird:
+So as not to alter the "global" instance of bluebird, it's recommended to first create a independent instance of the Bluebird constructor before patching, and pass it to cls-bluebird.
+
+This is a more robust approach.
 
 ```js
-var Promise = require('bluebird');
+var Promise = require('bluebird').getNewLibraryCopy();
 var clsBluebird = require('cls-bluebird');
 
 clsBluebird( ns, Promise );
 ```
 
-This is a more robust approach.
+(see [Promise.getNewLibraryCopy()](http://bluebirdjs.com/docs/api/promise.getnewlibrarycopy.html]) docs on Bluebird website)
 
 ### Nature of patching
 
-Combining CLS and promises is a slightly tricky business. There are 3 different conventions one could use (see [this issue](https://github.com/TimBeyer/cls-bluebird/issues/6) for more detail).
+Combining CLS and promises is a slightly tricky business. There are 3 different conventions one could use (see [this issue](https://github.com/othiym23/node-continuation-local-storage/issues/64) for more detail).
 
 `cls-bluebird` follows the convention of binding `.then()` callbacks **to the context in which `.then()` is called**.
 
@@ -67,21 +73,64 @@ function print() {
 // this outputs '456' (the value of `foo` at the time `.then()` was called)
 ```
 
+### Notes
+
+#### Coroutines
+
+The patch ensures that when execution in a coroutine continues after a `yield` statement, it always does so in the CLS context *in which the coroutine started running*.
+
+```js
+var fn = Promise.coroutine(function* () {
+    console.log('Context 1:', ns.get('foo'));
+    yield Promise.resolve();
+    console.log('Context 2:', ns.get('foo'));
+});
+
+ns.run(function(ctx) {
+    ns.set('foo', 123);
+    fn();
+});
+```
+
+outputs:
+
+```
+Context 1: 123
+Context 2: 123
+```
+
+This means:
+
+1. If the `yield`-ed expression loses CLS context, the original CLS context will be restored after the `yield`.
+2. Any code before the `yield` which changes CLS context will only be effective until the next `yield`.
+
+#### Global error handlers
+
+`Promise.onPossiblyUnhandledRejection()` and `Promise.onUnhandledRejectionHandled()` allow you to attach global handlers to intercept unhandled rejections.
+
+The CLS context in which callbacks are called is unknown. It's probably unwise to rely on the CLS context in the callback being that when the rejection occurred - use `.catch()` on the end of the promise chain that's created within `namespace.run()` instead.
+
+#### Progression
+
+Bluebird v2.x contains a deprecated API for handling progression (`.progressed()`) etc. These methods are patched and *should* work fine but they're not covered by the tests.
+
 ## Tests
 
-Use `npm test` to run the tests.
+The tests cover every possible combination of input promises and callbacks that the Bluebird API allows. There's around 100,000 tests in total and the aim is to ensure cls-bluebird is as robust and reliable as possible.
 
-The tests require a Redis server to be up and running on localhost on the standard port.
+Use `npm test` to run the tests. Use `npm run cover` to check coverage.
 
-Work is underway to expand the tests and remove the dependence on Redis.
+For more info on test tests, see [tests/README.md](https://github.com/TimBeyer/cls-bluebird/blob/master/tests/README.md)
 
 ## Changelog
 
 See [changelog.md](https://github.com/TimBeyer/cls-bluebird/blob/master/changelog.md)
 
-## Issues
+## Issues/bugs
 
 If you discover a bug, please raise an issue on Github. https://github.com/TimBeyer/cls-bluebird/issues
+
+We are very keen to ensure cls-bluebird is completely bug-free and any bugs discovered will be fixed as soon as possible.
 
 ## Contribution
 
