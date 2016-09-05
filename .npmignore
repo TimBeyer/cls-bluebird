@@ -1,2 +1,6 @@
 test
+coverage
+bin
+.jshintrc
+.travis.yml
 .npmignore

@@ -3,6 +3,7 @@
 ## Next
 
 * Complete re-write
+* New test suite
 
 ## 1.1.3
 
