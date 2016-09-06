@@ -46,7 +46,7 @@ var clsBluebird = require('cls-bluebird');
 clsBluebird( ns, Promise );
 ```
 
-(see [Promise.getNewLibraryCopy()](http://bluebirdjs.com/docs/api/promise.getnewlibrarycopy.html]) docs on Bluebird website)
+(see [Promise.getNewLibraryCopy()](http://bluebirdjs.com/docs/api/promise.getnewlibrarycopy.html) docs on Bluebird website)
 
 ### Nature of patching
 
@@ -120,7 +120,7 @@ The tests cover every possible combination of input promises and callbacks that 
 
 Use `npm test` to run the tests. Use `npm run cover` to check coverage.
 
-For more info on test tests, see [tests/README.md](https://github.com/TimBeyer/cls-bluebird/blob/master/tests/README.md)
+For more info on test tests, see [tests/README.md](https://github.com/TimBeyer/cls-bluebird/blob/master/test/README.md)
 
 ## Changelog
 

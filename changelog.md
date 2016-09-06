@@ -1,5 +1,9 @@
 # Changelog
 
+## Next
+
+* Correct typos in README
+
 ## 2.0.0
 
 * Complete re-write
