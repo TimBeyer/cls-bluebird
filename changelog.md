@@ -1,6 +1,6 @@
 # Changelog
 
-## Next
+## 2.0.0
 
 * Complete re-write
 * New test suite
