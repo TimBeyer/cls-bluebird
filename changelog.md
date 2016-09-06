@@ -1,5 +1,10 @@
 # Changelog
 
+## Next
+
+* Complete re-write
+* New test suite
+
 ## 1.1.3
 
 * Improved validation that `ns` argument is a namespace
