@@ -1,6 +1,6 @@
 {
   "name": "cls-bluebird",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Make bluebird work with the continuation-local-storage module.",
   "main": "lib/index.js",
   "scripts": {

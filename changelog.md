@@ -1,6 +1,6 @@
 # Changelog
 
-## Next
+## 2.0.1
 
 * Correct typos in README
 
