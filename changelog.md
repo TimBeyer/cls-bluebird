@@ -1,5 +1,9 @@
 # Changelog
 
+## Next
+
+* Skip Travis CI runs on release tags
+
 ## 2.0.1
 
 * Correct typos in README

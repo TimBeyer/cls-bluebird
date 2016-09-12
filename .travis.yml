@@ -9,6 +9,10 @@ node_js:
   - "4"
   - "6"
 
+branches:
+  except:
+    - /^v\d+\./
+
 env:
   matrix:
     - BLUEBIRD_VERSION=2
