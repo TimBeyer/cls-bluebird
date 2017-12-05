@@ -16,7 +16,7 @@
 			return function(handler) {
 				return Promise.spawn(fn.bind(null, handler));
 			};
-		});
+		}, 'spawn');
  	} else {
  		it.skip('not supported by node version ' + u.nodeVersion);
  	}
