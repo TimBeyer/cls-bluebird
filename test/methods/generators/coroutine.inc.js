@@ -9,7 +9,13 @@
 
 // Export function to run tests
 
-module.exports = function(u, co) {
+module.exports = function(u, co, type) {
+  if (type === 'coroutine') {
+    co.addYieldHandler(function(value) {
+      if (typeof value === 'number') return Promise.delay(value);
+		});
+	}
+
 	describe('returns instance of patched Promise constructor when generator', function() {
 		describe('returns value', function() {
 			u.testIsPromiseFromHandler(function(handler, cb) {
@@ -79,6 +85,27 @@ module.exports = function(u, co) {
 				});
 			});
 		});
+
+    describe('generator code asynchronously after yielding after use custom yield handler', function() {
+      u.describeAllPromises(function(makePromise) {
+        u.testAsync(function(handler, cb) {
+          var fn = co(function*() {
+            try {
+              if (type === 'coroutine') {
+                yield 500;
+              }
+
+              yield makePromise();
+            } catch (err) {}
+
+            handler();
+          });
+
+          var p = fn();
+          cb(p);
+        });
+      });
+    });
 
 		describe('generator code in finally block asynchronously after yielding', function() {
 			u.describeAllPromises(function(makePromise) {
@@ -158,7 +185,29 @@ module.exports = function(u, co) {
 			});
 		});
 
-		describe('in finally block after yielding', function() {
+    describe('after yielding with cutsom yield handler', function() {
+      u.describeAllPromises(function(makePromise) {
+        u.testRunContext(function(handler, fn, cb) {
+          var p = fn(handler);
+          cb(p);
+        }, function() {
+          // preFn to create coroutine
+          return co(function*(handler) {
+            try {
+              if (type === 'coroutine') {
+                yield 500;
+              }
+
+              yield makePromise();
+            } catch (err) {}
+
+            handler();
+          });
+        });
+      });
+    });
+
+    describe('in finally block after yielding', function() {
 			u.describeAllPromises(function(makePromise) {
 				u.testRunContext(function(handler, fn, cb) {
 					var p = fn(handler);
