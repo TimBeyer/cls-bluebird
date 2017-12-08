@@ -4,6 +4,7 @@
 
 * Skip Travis CI runs on release tags
 * Test against latest Bluebird v3
+* Update dev dependencies
 
 ## 2.0.1
 
