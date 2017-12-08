@@ -6,6 +6,7 @@
 * Skip Travis CI runs on release tags
 * Test against latest Bluebird v3
 * Update dev dependencies
+* Code style: Fix spacing in tests
 
 ## 2.0.1
 

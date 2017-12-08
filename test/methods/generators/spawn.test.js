@@ -3,21 +3,21 @@
  * Tests for Promise.spawn()
  */
 
- /* global it */
+/* global it */
 
- // Imports
- var runTests = require('../../support');
+// Imports
+var runTests = require('../../support');
 
- // Run tests
+// Run tests
 
- runTests('Promise.spawn()', function(u, Promise) {
- 	if (u.nodeVersion.slice(0, 2) !== '0.') {
- 		require('./coroutine.inc')(u, function(fn) {
+runTests('Promise.spawn()', function(u, Promise) {
+	if (u.nodeVersion.slice(0, 2) !== '0.') {
+		require('./coroutine.inc')(u, function(fn) {
 			return function(handler) {
 				return Promise.spawn(fn.bind(null, handler));
 			};
 		});
- 	} else {
- 		it.skip('not supported by node version ' + u.nodeVersion);
- 	}
- });
+	} else {
+		it.skip('not supported by node version ' + u.nodeVersion);
+	}
+});
