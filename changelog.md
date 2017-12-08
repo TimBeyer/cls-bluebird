@@ -3,6 +3,7 @@
 ## Next
 
 * Skip Travis CI runs on release tags
+* Test against latest Bluebird v3
 
 ## 2.0.1
 
