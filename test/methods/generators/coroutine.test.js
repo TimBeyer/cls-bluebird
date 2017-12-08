@@ -5,6 +5,9 @@
 
 /* global it */
 
+// Modules
+var expect = require('chai').expect;
+
 // Imports
 var runTests = require('../../support');
 
@@ -16,4 +19,10 @@ runTests('Promise.coroutine()', function(u, Promise) {
 	} else {
 		it.skip('not supported by node version ' + u.nodeVersion);
 	}
+});
+
+runTests('Promise.coroutine.addYieldHandler()', function(u, Promise) { // jshint ignore:line
+	it('is present', function() {
+		expect(Promise.coroutine.addYieldHandler).to.be.a('function');
+	});
 });

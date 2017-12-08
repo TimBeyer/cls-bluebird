@@ -2,6 +2,7 @@
 
 ## Next
 
+* Fix: `Promise.coroutine.addYieldHandler()` is maintained
 * Travis CI run tests on Node versions 8 + 9
 * Skip Travis CI runs on release tags
 * Test against latest Bluebird v3
