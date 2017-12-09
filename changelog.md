@@ -4,6 +4,7 @@
 
 * Fix: `Promise.coroutine.addYieldHandler()` is maintained
 * Patch `.tapCatch()` prototype method
+* Tests: Workaround for uncaught rejections bug in Bluebird v3.5.1
 * Travis CI run tests on Node versions 8 + 9
 * Skip Travis CI runs on release tags
 * Test against latest Bluebird v3
