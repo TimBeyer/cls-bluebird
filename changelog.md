@@ -6,6 +6,7 @@
 * Patch `.tapCatch()` prototype method
 * Tests: Workaround for uncaught rejections bug in Bluebird v3.5.1
 * Travis CI run tests on Node versions 8 + 9
+* Travis CI does not run tests on Node versions before v4
 * Skip Travis CI runs on release tags
 * Test against latest Bluebird v3
 * Update dev dependencies
