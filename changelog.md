@@ -1,6 +1,6 @@
 # Changelog
 
-## Next
+## 2.1.0
 
 * Fix: `Promise.coroutine.addYieldHandler()` is maintained
 * Patch `.tapCatch()` prototype method
